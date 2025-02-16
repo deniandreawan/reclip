@@ -25,4 +25,16 @@ export default defineConfig({
 		}),
 		tsconfigPaths(),
 	],
+	ssr: {
+		resolve: {
+			conditions: ["workerd", "worker", "browser"],
+			externalConditions: ["workerd", "worker"],
+		},
+	},
+	resolve: {
+		mainFields: ["browser", "module", "main"],
+	},
+	build: {
+		minify: true,
+	},
 });

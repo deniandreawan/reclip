@@ -5,5 +5,19 @@
 	"pages_build_output_dir": "./build/client",
 	"observability": {
 		"enabled": true
-	}
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "reclip",
+			"database_id": "c0de6b70-abe6-4206-b324-e804a94f3eae",
+			"migrations_dir": "drizzle"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "KV",
+			"id": "e422b421359443f8b1dcf1c3ed3c1fb6"
+		}
+	]
 }
