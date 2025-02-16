@@ -1,37 +1,28 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
+import { motion } from "framer-motion";
 
-import { Button } from "~/components/ui/button";
+import { Header } from "~/components/header";
+import { Hero } from "~/components/hero";
+import { PromptInput } from "~/components/prompt-input";
 
-export const meta: MetaFunction = () => {
-	return [
-		{ title: "New Remix App" },
-		{ name: "description", content: "Welcome to Remix!" },
-	];
-};
+export const meta: MetaFunction = () => [
+	{ title: "Reclip" },
+	{ name: "description", content: "Making the Impossible" },
+];
 
 export default function Index() {
 	return (
-		<div className="flex h-screen items-center justify-center">
-			<div className="flex flex-col items-center gap-16">
-				<header className="flex flex-col items-center gap-9">
-					<h1 className="leading font-bold text-2xl text-gray-800 dark:text-gray-100">
-						Welcome to <span className="sr-only">Remix</span>
-					</h1>
-					<div className="h-[144px] w-[434px]">
-						<img
-							src="/logo-light.png"
-							alt="Remix"
-							className="block w-full dark:hidden"
-						/>
-						<img
-							src="/logo-dark.png"
-							alt="Remix"
-							className="hidden w-full dark:block"
-						/>
-					</div>
-				</header>
-				<Button>Click me!</Button>
-			</div>
+		<div className="scrollbar-hide min-h-[100svh]">
+			<Header />
+			<Hero />
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.1, delay: 0.5 }}
+				className="-translate-x-1/2 fixed bottom-5 left-1/2 z-20 flex w-full max-w-2xl flex-col gap-1.5 px-4 md:bottom-10"
+			>
+				<PromptInput />
+			</motion.div>
 		</div>
 	);
 }
