@@ -1,4 +1,8 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
+import {
+	type LoaderFunctionArgs,
+	type MetaFunction,
+	json,
+} from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
 import { motion } from "framer-motion";
 
@@ -14,19 +18,22 @@ export const meta: MetaFunction = () => [
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
 	const auth = authServer(context.cloudflare.env);
-	const session = await auth.api.getSession({
+	const data = await auth.api.getSession({
 		headers: request.headers,
 	});
 
-	return session;
+	return {
+		session: data?.session,
+		user: data?.user,
+	};
 }
 
 export default function Index() {
-	const auth = useLoaderData<typeof loader>();
+	const { user } = useLoaderData<typeof loader>();
 
 	return (
 		<div className="scrollbar-hide min-h-[100svh]">
-			<Header session={auth?.session} />
+			<Header user={user} />
 			<Hero />
 			<motion.div
 				initial={{ opacity: 0 }}
@@ -34,7 +41,7 @@ export default function Index() {
 				transition={{ duration: 0.1, delay: 0.5 }}
 				className="-translate-x-1/2 fixed bottom-5 left-1/2 z-20 flex w-full max-w-2xl flex-col gap-1.5 px-4 md:bottom-10"
 			>
-				<PromptInput />
+				<PromptInput user={user} />
 			</motion.div>
 		</div>
 	);

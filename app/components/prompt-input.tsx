@@ -1,9 +1,14 @@
 import { DicesIcon, Settings2Icon, SparkleIcon } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
+import { AuthDialog } from "~/components/auth-dialog";
 import { Button } from "~/components/ui/button";
+import type { loader } from "~/routes/_index";
 
-export function PromptInput() {
+export function PromptInput({
+	user,
+}: { user: Awaited<ReturnType<typeof loader>>["user"] }) {
+	const [open, setOpen] = useState<boolean>(false);
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 
 	useEffect(() => {
@@ -54,12 +59,15 @@ export function PromptInput() {
 				</div>
 				<Button
 					variant="secondary"
-					type="submit"
 					className="rounded-full bg-blue-600/20 text-blue-400 shadow-none hover:bg-blue-600 hover:text-primary"
+					type="button"
+					onClick={() => (!user ? setOpen(true) : {})}
 				>
 					<SparkleIcon className="size-4" />
 					Generate
 				</Button>
+
+				{!user && <AuthDialog open={open} setOpen={setOpen} />}
 			</div>
 		</form>
 	);
