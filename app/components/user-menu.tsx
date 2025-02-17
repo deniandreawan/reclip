@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "@remix-run/react";
+import { LogOutIcon, UserIcon, WalletIcon } from "lucide-react";
 import { useCallback } from "react";
 
 import { authClient } from "~/auth/auth.client";
@@ -48,27 +49,34 @@ export function UserMenu({
 				</Avatar>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
-				className="mx-4 w-[250px] rounded-2xl border border-border bg-background/40 shadow-md backdrop-blur-xl sm:mx-6"
+				className="mx-4 w-[240px] rounded-2xl border border-border bg-background/40 text-muted-foreground shadow-md backdrop-blur-xl sm:mx-6"
 				sideOffset={10}
 			>
-				<DropdownMenuLabel className="mx-1 my-2 flex flex-col space-y-1">
+				<DropdownMenuLabel className="mx-1 my-2">
 					<span className="truncate text-muted-foreground">{user?.name}</span>
-					<span className="truncate font-normal text-muted-foreground text-xs">
-						{user?.email}
-					</span>
 				</DropdownMenuLabel>
 				<DropdownMenuGroup className="p-1">
 					<Link to="#">
-						<DropdownMenuItem className="p-2">Account</DropdownMenuItem>
+						<DropdownMenuItem className="rounded-xl p-2 focus:bg-white/5">
+							<UserIcon />
+							Account
+						</DropdownMenuItem>
 					</Link>
 
 					<Link to="#">
-						<DropdownMenuItem className="p-2">Pricing</DropdownMenuItem>
+						<DropdownMenuItem className="rounded-xl p-2 focus:bg-white/5">
+							<WalletIcon />
+							Pricing
+						</DropdownMenuItem>
 					</Link>
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup className="p-1">
-					<DropdownMenuItem className="p-2" onClick={signOut}>
+					<DropdownMenuItem
+						className="rounded-xl p-2 focus:bg-white/5 focus:text-red-400"
+						onClick={signOut}
+					>
+						<LogOutIcon />
 						Sign out
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
