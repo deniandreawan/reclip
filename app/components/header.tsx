@@ -30,7 +30,7 @@ export function Header({
 	return (
 		<header className="fixed z-[40] my-2 inline-flex h-[56px] w-full items-center justify-between px-4 md:my-4 md:h-[40px] md:px-6">
 			<div className="flex h-full w-full items-center justify-between">
-				<Link className="flex items-center space-x-3 opacity-80" to="/">
+				<Link className="flex items-center space-x-3" to="/">
 					<Icons.logo className="size-5" />
 					<span className="font-bold text-sm uppercase">Reclip</span>
 				</Link>

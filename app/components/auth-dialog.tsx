@@ -26,10 +26,10 @@ export function AuthDialog({ open, setOpen }: AuthDialogProps) {
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogContent className="flex max-w-2xl flex-col items-center justify-center rounded-3xl bg-zinc-900 p-6 sm:rounded-3xl sm:p-0 md:flex-row">
 				<DialogTitle className="relative hidden md:block">
-					<div className="my-4 ml-4 rounded-xl bg-zinc-900">
+					<div className="my-4 ml-4 h-80 w-80 rounded-xl bg-zinc-800">
 						<img
-							className="max-h-[650px] max-w-full rounded-xl"
-							alt="Image Grid"
+							className="h-auto w-full rounded-xl object-cover"
+							alt="Image auth"
 							loading="lazy"
 							decoding="async"
 							src="/bg-auth.webp"
